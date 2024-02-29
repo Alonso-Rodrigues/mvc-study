@@ -4,6 +4,7 @@ class Route
 {
     private $controller = "Pages";
     private $method = "index";
+    private $parameters = [];
 
     public function __construct()
     {
@@ -22,7 +23,9 @@ class Route
                 unset($url[1]);
             }
         }
-        var_dump($this);
+
+        $this->parameters = $url ? array_values($url) : [];
+        call_user_func_array([$this->controller, $this->method], $this->parameters);
     }
 
     private function url()
