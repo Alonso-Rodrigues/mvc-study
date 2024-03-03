@@ -1,4 +1,5 @@
 <?php
+include '../app/config.php';
 include '../app/library/Route.php';
 include '../app/library/Controller.php';
 ?>
@@ -9,7 +10,9 @@ include '../app/library/Controller.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title><?= app_name ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= url ?>/public/css/style.css">
 </head>
 
 <body>
@@ -17,5 +20,9 @@ include '../app/library/Controller.php';
     $routes = new Route();
     ?>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<script src=" <?= url ?>/public/js/script.js"></script>
 
 </html>
