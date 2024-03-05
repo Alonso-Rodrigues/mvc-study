@@ -2,6 +2,8 @@
 include '../app/config.php';
 include '../app/library/Route.php';
 include '../app/library/Controller.php';
+include '../app/library/connect.php'; 
+$db = new DataBase;
 ?>
 
 <!DOCTYPE html>
