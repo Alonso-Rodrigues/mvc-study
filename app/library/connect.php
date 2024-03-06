@@ -29,11 +29,14 @@ class DataBase
         }
     }
 
+    //preare statements with query
     public function query($sql)
     {
+        //prepare a sql query
         $this->stmt = $this->dbh->prepare($sql);
     }
 
+    //binds a value to a parameter
     public function bind($parameter, $value, $type = null)
     {
         if (is_null($type)) {
@@ -54,28 +57,35 @@ class DataBase
         $this->stmt->bindValue($parameter, $value, $type);
     }
 
+    //execute prepared statement
     public function execute()
     {
         return $this->stmt->execute();
     }
 
+    // get a single record
     public function result()
     {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    //get a record group
     public function results()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function totalresults(){
+    //returns the number of rows affected by the last SQL statement
+    public function totalresults()
+    {
         return $this->stmt->rowCount();
     }
 
-    public function lastId(){
-        return $this->stmt->lastInsertId();
+    //returns the last ID entered into the database
+    public function lastId()
+    {
+        return $this->dbh->lastInsertId();
     }
 }
