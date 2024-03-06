@@ -12,7 +12,8 @@ class DataBase
     public function __construct()
     {
         //data source or DSN contains the information needed to connect to the database
-        $dns = 'mysql:host' . $this->host . ';port=' . $this->door . ';dbname' . $this->db;
+        $dns = 'mysql:host=' . $this->host . ';port=' . $this->door . ';dbname=' . $this->db;
+
         $options = [
             // caches the connection to be reused, and avoids the overhead of a new connection, resulting in a faster application
             PDO::ATTR_PERSISTENT => true,

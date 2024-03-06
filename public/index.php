@@ -2,10 +2,19 @@
 include '../app/config.php';
 include '../app/library/Route.php';
 include '../app/library/Controller.php';
-include '../app/library/connect.php'; 
+include '../app/library/connect.php';
 $db = new DataBase;
 
-
+$user_id = 10;
+$title = 'title post';
+$text = 'text post';
+$db->query("INSERT INTO posts(user_id, title, text) VALUES(:user_id, :title, :text)");
+$db->bind(':user_id', $user_id);
+$db->bind(':title', $title);
+$db->bind(':text', $text);
+$db->execute();
+echo "<hr>Total Results: " . $db->totalResults();
+echo "<hr>Last Id: " . $db->lastId();
 ?>
 
 <!DOCTYPE html>
