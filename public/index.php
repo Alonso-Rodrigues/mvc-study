@@ -1,11 +1,9 @@
 <?php
 include '../app/config.php';
-include '../app/library/Route.php';
-include '../app/library/Controller.php';
-include '../app/library/connect.php';
-$db = new DataBase;
+include '../app/autoload.php';
 
-$id = 8;
+// $db = new DataBase;
+// $id = 8;
 // $user_id = 2;
 // $title = 'title post edit';
 // $text = 'text post edit';
@@ -34,14 +32,14 @@ $id = 8;
 // $db->execute();
 // echo "<hr>Total Results: " . $db->totalResults();
 //---------------------------------------|Select|-----------------------------------------
-$db->query("SELECT * FROM posts WHERE id = {$id} ORDER BY id ASC");
-// $db->result();
-// $db->execute();
-// echo $db->result()->title;
-foreach ($db->results() as $post) {
-    echo htmlspecialchars($post->id) . ' - ' . htmlspecialchars($post->title) . '<br>';
-}
-echo "<hr>Total Results: " . htmlspecialchars($db->totalResults());
+// $db->query("SELECT * FROM posts WHERE id = {$id} ORDER BY id ASC");
+// // $db->result();
+// // $db->execute();
+// // echo $db->result()->title;
+// foreach ($db->results() as $post) {
+//     echo htmlspecialchars($post->id) . ' - ' . htmlspecialchars($post->title) . '<br>';
+// }
+// echo "<hr>Total Results: " . htmlspecialchars($db->totalResults());
 ?>
 
 <!DOCTYPE html>
