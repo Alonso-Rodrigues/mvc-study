@@ -2,7 +2,7 @@
 
 class Route
 {
-    private $controller = "Pages";
+    private $controller = "pages";
     private $method = "index";
     private $parameters = [];
 
