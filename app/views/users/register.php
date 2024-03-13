@@ -13,23 +13,23 @@
             <div class="card">
                 <div class="card-body">
                     <h2>Register</h2>
-                    <small>Fill the form</small>
-                    <form action="register" method="POST" action="">
+                    <p class="card-text"><small class="text-muted">Fill the form</small></p>
+                    <form action="register" method="POST" action="<?= url ?>/user/register">
                         <div class="form-group">
                             <label for="name" class="form-label">Name: <sup class="text-danger">*</sup></label>
-                            <input type="text" name="name" id="name" class="form-control" required>
+                            <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Email: <sup class="text-danger">*</sup></label>
-                            <input type="email" name="email" id="email" class="form-control" required>
+                            <input type="email" name="email" id="email" value="<?= $data['email'] ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-label">Password: <sup class="text-danger">*</sup></label>
-                            <input type="password" name="password" id="password" class="form-control" required>
+                            <input type="password" name="password" id="password" value="<?= $data['password'] ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="confirm_password" class="form-label">Confirm the Password: <sup class="text-danger">*</sup></label>
-                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                            <input type="password" name="confirm_password" id="confirm_password" value="<?= $data['confirm_password'] ?>" class="form-control" required>
                         </div>
                         <hr>
                         <div class="row">
