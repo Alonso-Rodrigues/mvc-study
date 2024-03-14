@@ -36,11 +36,11 @@ class Users extends Controller
                 } elseif ($form['password'] != $form['confirm_password']) {
                     $data['error_confirm_password'] = "Passwords don't match";
                 } else {
+                    $data['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
                     echo "You can register the data <hr>";
                 }
             }
-
-            // var_dump($form);
+            var_dump($form);
         } else {
             $data = [
                 'name' => '',
@@ -49,7 +49,6 @@ class Users extends Controller
                 'confirm_password' => '',
             ];
         }
-
         $this->view('users/register', $data);
     }
 }
