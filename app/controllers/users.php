@@ -13,27 +13,33 @@ class Users extends Controller
                 'confirm_password' => trim($form['confirm_password']),
             ];
 
-            if (empty($form['name'])) {
-                $data['error_name'] = 'Fill in the field';
-            }
-            if (empty($form['email'])) {
-                $data['error_email'] = 'Fill in the field';
-            }
-            if (empty($form['password'])) {
-                $data['error_password'] = 'Fill in the field';
-            } elseif (strlen($form['password']) < 6) {
-                $data['error_password'] = 'Password must be at least 6 characters';
-            }
-            if (empty($form['confirm_password'])) {
-                $data['error_confirm_password'] = 'Confirm the Password';
+            if (in_array("", $form)) {
+                if (empty($form['name'])) {
+                    $data['error_name'] = 'Fill in the field';
+                }
+                if (empty($form['email'])) {
+                    $data['error_email'] = 'Fill in the field';
+                }
+                if (empty($form['password'])) {
+                    $data['error_password'] = 'Fill in the field';
+                }
+                if (empty($form['confirm_password'])) {
+                    $data['error_confirm_password'] = 'Confirm the Password';
+                }
             } else {
-                if ($form['password'] != $form['confirm_password']) {
+                if (Checker::checkName($form['name'])) {
+                    $data['error_name'] = 'The name provided is invalid';
+                } elseif (Checker::checkEmail($form['email'])) {
+                    $data['error_email'] = 'The email provided is invalid';
+                } elseif (strlen($form['password']) < 6) {
+                    $data['error_password'] = 'Password must be at least 6 characters';
+                } elseif ($form['password'] != $form['confirm_password']) {
                     $data['error_confirm_password'] = "Passwords don't match";
+                } else {
+                    echo "You can register the data <hr>";
                 }
             }
-            if (!in_array("", $form)) {
-                echo "You can register";
-            }
+
             // var_dump($form);
         } else {
             $data = [

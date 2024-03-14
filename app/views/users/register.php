@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Email: <sup class="text-danger">*</sup></label>
-                            <input type="email" name="email" id="email" value="<?= $data['email'] ?>" class="form-control <?= isset($data['error_email']) && !empty($data['error_email']) ? 'is-invalid' : '' ?>">
+                            <input type="text" name="email" id="email" value="<?= $data['email'] ?>" class="form-control <?= isset($data['error_email']) && !empty($data['error_email']) ? 'is-invalid' : '' ?>">
                             <div class="invalid-feedback">
                                 <?= isset($data['error_email']) ? $data['error_email'] : '' ?>
                             </div>
