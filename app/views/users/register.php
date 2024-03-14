@@ -17,19 +17,31 @@
                     <form action="register" method="POST" action="<?= url ?>/user/register">
                         <div class="form-group">
                             <label for="name" class="form-label">Name: <sup class="text-danger">*</sup></label>
-                            <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control" required>
+                            <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control <?= isset($data['error_name']) && !empty($data['error_name']) ? 'is-invalid' : '' ?>">
+                            <div class="invalid-feedback">
+                                <?= isset($data['error_name']) ? $data['error_name'] : '' ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email" class="form-label">Email: <sup class="text-danger">*</sup></label>
-                            <input type="email" name="email" id="email" value="<?= $data['email'] ?>" class="form-control" required>
+                            <input type="email" name="email" id="email" value="<?= $data['email'] ?>" class="form-control <?= isset($data['error_email']) && !empty($data['error_email']) ? 'is-invalid' : '' ?>">
+                            <div class="invalid-feedback">
+                                <?= isset($data['error_email']) ? $data['error_email'] : '' ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-label">Password: <sup class="text-danger">*</sup></label>
-                            <input type="password" name="password" id="password" value="<?= $data['password'] ?>" class="form-control" required>
+                            <input type="password" name="password" id="password" value="<?= $data['password'] ?>" class="form-control <?= isset($data['error_password']) && !empty($data['error_password']) ? 'is-invalid' : '' ?>">
+                            <div class="invalid-feedback">
+                                <?= isset($data['error_password']) ? $data['error_password'] : '' ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="confirm_password" class="form-label">Confirm the Password: <sup class="text-danger">*</sup></label>
-                            <input type="password" name="confirm_password" id="confirm_password" value="<?= $data['confirm_password'] ?>" class="form-control" required>
+                            <input type="password" name="confirm_password" id="confirm_password" value="<?= $data['confirm_password'] ?>" class="form-control <?= isset($data['error_confirm_password']) && !empty($data['error_confirm_password']) ? 'is-invalid' : '' ?>">
+                            <div class="invalid-feedback">
+                                <?= isset($data['error_confirm_password']) ? $data['error_confirm_password'] : '' ?>
+                            </div>
                         </div>
                         <hr>
                         <div class="row">

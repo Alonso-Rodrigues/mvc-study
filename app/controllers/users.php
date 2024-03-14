@@ -12,7 +12,29 @@ class Users extends Controller
                 'password' => trim($form['password']),
                 'confirm_password' => trim($form['confirm_password']),
             ];
-            var_dump($form);
+
+            if (empty($form['name'])) {
+                $data['error_name'] = 'Fill in the field';
+            }
+            if (empty($form['email'])) {
+                $data['error_email'] = 'Fill in the field';
+            }
+            if (empty($form['password'])) {
+                $data['error_password'] = 'Fill in the field';
+            } elseif (strlen($form['password']) < 6) {
+                $data['error_password'] = 'Password must be at least 6 characters';
+            }
+            if (empty($form['confirm_password'])) {
+                $data['error_confirm_password'] = 'Confirm the Password';
+            } else {
+                if ($form['password'] != $form['confirm_password']) {
+                    $data['error_confirm_password'] = "Passwords don't match";
+                }
+            }
+            if (!in_array("", $form)) {
+                echo "You can register";
+            }
+            // var_dump($form);
         } else {
             $data = [
                 'name' => '',
