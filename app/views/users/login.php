@@ -14,7 +14,7 @@
                 <div class="card-body bg-secondary text-white rounded">
                     <h2 class="text-center">Login</h2>
                     <p class="card-text"><small class="text-muted">Fill in your details to log in</small></p>
-                    <form name="login" method="POST" action="<?= url ?>/user/login">
+                    <form name="login" method="POST" action="<?= url ?>/users/login">
                         <div class="form-group">
                             <label for="email" class="form-label">Email: <sup class="text-danger">*</sup></label>
                             <input type="text" name="email" id="email" value="<?= $data['email'] ?>" class="form-control <?= isset($data['error_email']) && !empty($data['error_email']) ? 'is-invalid' : '' ?>">

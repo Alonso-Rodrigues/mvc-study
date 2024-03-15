@@ -14,7 +14,7 @@
                 <div class="card-body bg-secondary text-white rounded">
                     <h2 class="text-center">Register</h2>
                     <p class="card-text"><small class="text-muted">Fill the form</small></p>
-                    <form name="register" method="POST" action="<?= url ?>/user/register">
+                    <form name="register" method="POST" action="<?= url ?>/users/register">
                         <div class="form-group">
                             <label for="name" class="form-label">Name: <sup class="text-danger">*</sup></label>
                             <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control <?= isset($data['error_name']) && !empty($data['error_name']) ? 'is-invalid' : '' ?>">

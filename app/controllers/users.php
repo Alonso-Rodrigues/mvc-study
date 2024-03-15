@@ -9,7 +9,7 @@ class Users extends Controller
         $this->userModel = $this->model('User');
     }
 
-// Controller register user
+    // Controller register user:
     public function register()
     {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -70,7 +70,7 @@ class Users extends Controller
         $this->view('users/register', $data);
     }
 
-//Controller Login: 
+    //Controller Login: 
     public function login()
     {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -91,7 +91,13 @@ class Users extends Controller
                 if (Checker::checkEmail($form['email'])) {
                     $data['error_email'] = 'The email provided is invalid';
                 } else {
-                    echo "You can login";
+                    $checkerlogin = $this->userModel->checkLogin($form['email'], $form['password']);
+
+                    if($checkerlogin){
+                        echo "User can create the session <hr>";
+                    } else{
+                        echo "User and password invalid <hr>";
+                    }
                 }
             }
             var_dump($form);
