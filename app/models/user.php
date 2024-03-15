@@ -7,7 +7,17 @@ class User
     public function __construct()
     {
         $this->db = new DataBase();
-        if (!isset($email)) {
+    }
+
+    public function checkEmail($email)
+    {
+        $this->db->query("SELECT email FROM users WHERE email = :e");
+        $this->db->bind(":e", $email);
+
+        if ($this->db->result()) {
+            return true;
+        } else {
+            return false;
         }
     }
 

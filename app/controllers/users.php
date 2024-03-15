@@ -2,6 +2,7 @@
 
 class Users extends Controller
 {
+    
     public function __construct()
     {
         $this->userModel = $this->model('User');
@@ -36,6 +37,8 @@ class Users extends Controller
                     $data['error_name'] = 'The name provided is invalid';
                 } elseif (Checker::checkEmail($form['email'])) {
                     $data['error_email'] = 'The email provided is invalid';
+                } elseif ($this->userModel->checkEmail($form['email'])) {
+                    $data['error_email'] = 'The email provided is already in use';
                 } elseif (strlen($form['password']) < 6) {
                     $data['error_password'] = 'Password must be at least 6 characters';
                 } elseif ($form['password'] != $form['confirm_password']) {
