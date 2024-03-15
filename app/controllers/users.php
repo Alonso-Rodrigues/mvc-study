@@ -2,6 +2,11 @@
 
 class Users extends Controller
 {
+    public function __construct()
+    {
+        $this->userModel = $this->model('User');
+    }
+
     public function register()
     {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -37,7 +42,12 @@ class Users extends Controller
                     $data['error_confirm_password'] = "Passwords don't match";
                 } else {
                     $data['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
-                    echo "You can register the data <hr>";
+
+                    if ($this->userModel->store($data)) {
+                        echo "Register success <hr>";
+                    } else {
+                        die("Error to store");
+                    }
                 }
             }
             var_dump($form);
