@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -12,16 +12,9 @@
         <div class="col-xl-4 col-md-6 mx-auto p-5">
             <div class="card">
                 <div class="card-body bg-secondary text-white rounded">
-                    <h2 class="text-center">Register</h2>
-                    <p class="card-text"><small class="text-muted">Fill the form</small></p>
-                    <form name="register" method="POST" action="<?= url ?>/user/register">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Name: <sup class="text-danger">*</sup></label>
-                            <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control <?= isset($data['error_name']) && !empty($data['error_name']) ? 'is-invalid' : '' ?>">
-                            <div class="invalid-feedback">
-                                <?= isset($data['error_name']) ? $data['error_name'] : '' ?>
-                            </div>
-                        </div>
+                    <h2 class="text-center">Login</h2>
+                    <p class="card-text"><small class="text-muted">Fill in your details to log in</small></p>
+                    <form name="login" method="POST" action="<?= url ?>/user/login">
                         <div class="form-group">
                             <label for="email" class="form-label">Email: <sup class="text-danger">*</sup></label>
                             <input type="text" name="email" id="email" value="<?= $data['email'] ?>" class="form-control <?= isset($data['error_email']) && !empty($data['error_email']) ? 'is-invalid' : '' ?>">
@@ -36,20 +29,13 @@
                                 <?= isset($data['error_password']) ? $data['error_password'] : '' ?>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="confirm_password" class="form-label">Confirm the Password: <sup class="text-danger">*</sup></label>
-                            <input type="password" name="confirm_password" id="confirm_password" value="<?= $data['confirm_password'] ?>" class="form-control <?= isset($data['error_confirm_password']) && !empty($data['error_confirm_password']) ? 'is-invalid' : '' ?>">
-                            <div class="invalid-feedback">
-                                <?= isset($data['error_confirm_password']) ? $data['error_confirm_password'] : '' ?>
-                            </div>
-                        </div>
                         <hr>
                         <div class="row">
                             <div class="col">
-                                <input type="submit" value="Register" class="btn btn-info btn-block">
+                                <input type="submit" value="login" class="btn btn-info btn-block">
                             </div>
                             <div class="col">
-                                <a href=" <?= url ?>/users/login">Do you have an account? Login</a>
+                                <a href="<?= url ?>/users/register">Don't have an account? Register</a>
                             </div>
                         </div>
                     </form>

@@ -3,12 +3,13 @@
 class Users extends Controller
 {
     private $userModel;
-    
+
     public function __construct()
     {
         $this->userModel = $this->model('User');
     }
 
+// Controller register user
     public function register()
     {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -54,15 +55,54 @@ class Users extends Controller
                     }
                 }
             }
-            var_dump($form);
         } else {
             $data = [
                 'name' => '',
                 'email' => '',
                 'password' => '',
                 'confirm_password' => '',
+                'error_name' => '',
+                'error_email' => '',
+                'error_password' => '',
+                'error_confirm_password' => '',
             ];
         }
         $this->view('users/register', $data);
+    }
+
+//Controller Login: 
+    public function login()
+    {
+        $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+        if (isset($form)) {
+            $data = [
+                'email' => trim($form['email']),
+                'password' => trim($form['password']),
+            ];
+
+            if (in_array("", $form)) {
+                if (empty($form['email'])) {
+                    $data['error_email'] = 'Fill in the field';
+                }
+                if (empty($form['password'])) {
+                    $data['error_password'] = 'Fill in the field';
+                }
+            } else {
+                if (Checker::checkEmail($form['email'])) {
+                    $data['error_email'] = 'The email provided is invalid';
+                } else {
+                    echo "You can login";
+                }
+            }
+            var_dump($form);
+        } else {
+            $data = [
+                'email' => '',
+                'password' => '',
+                'error_email' => '',
+                'error_password' => '',
+            ];
+        }
+        $this->view('users/login', $data);
     }
 }
