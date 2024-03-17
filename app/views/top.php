@@ -8,9 +8,18 @@
         <li class="nav-item" style="margin-right: 50px;">
             <a href="<?= url ?>" class="nav-link active" aria-current="page">Home</a>
         </li>
-        <li class="nav-item"><a href="<?= url ?>/pages/about" class="nav-link" style="margin-right: 50px;">About me</a></li>
-        <li class="nav-item"><a href="<?= url ?>/users/register" class="nav-link" style="margin-right: 50px;">Register</a></li>
-        <li class="nav-item"><a href="<?= url ?>/users/login" class="nav-link" style="margin-right: 50px;">Login</a></li>
+        <li class="nav-item">
+            <a href="<?= url ?>/pages/about" class="nav-link" style="margin-right: 25px;">About me</a>
+        </li>
+        <?php if (isset($_SESSION['user_id'])) { ?>
+            <p class="nav-link" style="margin-right: 25px;">
+                Welcome, <?= $_SESSION['user_name']; ?>
+                <a class="btn btn-sm btn-danger" style="margin-left: 50px" href="<?= url ?>/users/logOut">Log Out</a>
+            </p>
+        <?php } else { ?>
+            <li class="nav-item"><a href="<?= url ?>/users/register" class="nav-link" style="margin-right: 50px;">Register</a></li>
+            <li class="nav-item"><a href="<?= url ?>/users/login" class="nav-link" style="margin-right: 50px;">Login</a></li>
+        <?php } ?>
     </ul>
 
 </header>

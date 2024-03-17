@@ -9,7 +9,7 @@ class Users extends Controller
         $this->userModel = $this->model('User');
     }
 
-    // Controller register user:
+    // Controller register user
     public function register()
     {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -70,7 +70,7 @@ class Users extends Controller
         $this->view('users/register', $data);
     }
 
-    //Controller Login: 
+    //Controller Login
     public function login()
     {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -91,16 +91,15 @@ class Users extends Controller
                 if (Checker::checkEmail($form['email'])) {
                     $data['error_email'] = 'The email provided is invalid';
                 } else {
-                    $checkerlogin = $this->userModel->checkLogin($form['email'], $form['password']);
+                    $user = $this->userModel->checkLogin($form['email'], $form['password']);
 
-                    if($checkerlogin){
-                        echo "User can create the session <hr>";
-                    } else{
+                    if ($user) {
+                        $this->createSessionUser($user);
+                    } else {
                         echo "User and password invalid <hr>";
                     }
                 }
             }
-            var_dump($form);
         } else {
             $data = [
                 'email' => '',
@@ -110,5 +109,27 @@ class Users extends Controller
             ];
         }
         $this->view('users/login', $data);
+    }
+
+    // Create user session 
+    private function createSessionUser($user)
+
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_name'] = $user->name;
+        $_SESSION['user_email'] = $user->email;
+        header('Location: ' . url . '/pages/home');
+        exit();
+    }
+
+    // Destroy user session
+    public function logOut()
+    {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_name']);
+        unset($_SESSION['user_email']);
+        session_destroy();
+        header('Location: ' . url . '/pages/home');
+        exit();
     }
 }
