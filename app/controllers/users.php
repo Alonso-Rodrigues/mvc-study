@@ -50,7 +50,7 @@ class Users extends Controller
 
                     if ($this->userModel->store($data)) {
                         session::message('user', 'Registration completed successfully!');
-                        header('Location: ' . url . '/pages/home');
+                        url::redirect('users/login');
                     } else {
                         die("Error to store");
                     }
@@ -119,7 +119,7 @@ class Users extends Controller
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_email'] = $user->email;
-        header('Location: ' . url . '/pages/home');
+        url::redirect('pages/home');
         exit();
     }
 
@@ -130,7 +130,7 @@ class Users extends Controller
         unset($_SESSION['user_name']);
         unset($_SESSION['user_email']);
         session_destroy();
-        header('Location: ' . url . '/pages/home');
+        url::redirect('pages/login');
         exit();
     }
 }
