@@ -14,6 +14,7 @@
                 <div class="card-body bg-secondary text-white rounded">
                     <h2 class="text-center">Login</h2>
                     <p class="card-text"><small class="text-muted">Fill in your details to log in</small></p>
+                    <?= session::message('user') ?>
                     <form name="login" method="POST" action="<?= url ?>/users/login">
                         <div class="form-group">
                             <label for="email" class="form-label">Email: <sup class="text-danger">*</sup></label>

@@ -49,7 +49,8 @@ class Users extends Controller
                     $data['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
 
                     if ($this->userModel->store($data)) {
-                        echo "Register success <hr>";
+                        session::message('user', 'Registration completed successfully!');
+                        header('Location: ' . url . '/pages/home');
                     } else {
                         die("Error to store");
                     }
@@ -96,7 +97,7 @@ class Users extends Controller
                     if ($user) {
                         $this->createSessionUser($user);
                     } else {
-                        echo "User and password invalid <hr>";
+                        session::message('user', 'Username or password is invalid!', 'alert alert-danger');
                     }
                 }
             }
