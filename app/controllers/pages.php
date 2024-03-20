@@ -3,7 +3,12 @@
 class Pages extends Controller
 {
     public function index()
-    {
+    {   
+        // To automatically redirect the posts page if the user is logged
+        if (session::userLogged()) {
+            url::redirect('posts');
+        }
+
         $data = [
             'titlePage' => 'Home Page',
         ];

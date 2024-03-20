@@ -114,13 +114,11 @@ class Users extends Controller
 
     // Create user session 
     private function createSessionUser($user)
-
     {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_email'] = $user->email;
         url::redirect('posts');
-        exit();
     }
 
     // Destroy user session
