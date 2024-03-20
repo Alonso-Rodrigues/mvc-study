@@ -10,8 +10,8 @@
 <body>
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="<?= url ?>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"></svg>
-            <span class="fs-4">MVC</span>
+            <svg class="bi me-2 " width="40" height="32"></svg>
+            <span class="fs-4 p-4 border border-dark rounded-circle bg-dark text-light">M.V.C</span>
         </a>
 
         <ul class="nav nav-pills">
@@ -19,7 +19,7 @@
                 <a href="<?= url ?>" class="nav-link active" aria-current="page">Home</a>
             </li>
             <li class="nav-item">
-                <a href="<?= url ?>/pages/about" class="nav-link" style="margin-right: 25px;">About me</a>
+                <a href="<?= url ?>/pages/about" class="nav-link" style="margin-right: 25px;">About</a>
             </li>
             <?php if (isset($_SESSION['user_id'])) { ?>
                 <p class="nav-link" style="margin-right: 25px;">
