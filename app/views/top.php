@@ -10,7 +10,7 @@
 <body>
     <header class="d-flex flex-wrap justify-content-around py-4 mb-4 border-bottom">
         <a href="<?= url ?>">
-            <img class="rounded-circle" src="<?= url ?>/public/img/logo.jpg" alt="logo" style="width: 130px; height: 90px;">
+            <img class="rounded-circle" src="<?= url ?>/public/img/logo.jpg" alt="logo" style="width: 150px; height: 90px;">
         </a>
 
         <ul class="nav nav-pills d-flex align-items-center">
