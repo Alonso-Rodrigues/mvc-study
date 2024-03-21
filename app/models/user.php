@@ -45,7 +45,7 @@ class User
         $result = $this->db->result();
 
         if ($result) {
-            $user = $result[0];
+            $user = $result;
             if (password_verify($password,$user->password)) {
                 return $user;
             } else {

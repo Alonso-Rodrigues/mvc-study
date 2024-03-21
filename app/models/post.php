@@ -20,10 +20,10 @@ class Post
             users.created_in as usersDateRegister
             FROM posts
             INNER JOIN users ON
-            posts.user_id = users.id;
+            posts.user_id = users.id
             ORDER BY posts.id DESC"
         );
-        return $this->db->result();
+        return $this->db->results();
     }
 
     // To register posts
@@ -48,5 +48,21 @@ class Post
         $this->db->query("SELECT * FROM posts WHERE id = :id");
         $this->db->bind('id', $id);
         return $this->db->result();
+    }
+
+    // To update posts
+    public function update($data)
+    {
+        $this->db->query("UPDATE posts SET title = :title, text = :text WHERE id = :id");
+
+        $this->db->bind("id", $data['id']);
+        $this->db->bind("title", $data['title']);
+        $this->db->bind("text", $data['text']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

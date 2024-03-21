@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Posts</title>
+    <title>Edit Posts</title>
 </head>
 
 <body>
@@ -13,14 +13,14 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= url ?>/posts">Posts</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Register</li>
+                    <li class="breadcrumb-item active" aria-current="page">To edit</li>
                 </ol>
             </nav>
             <div class="card">
                 <div class="card-body bg-secondary text-white rounded">
-                    <h2 class="text-center p-3">Register Posts</h2>
+                    <h2 class="text-center p-3">To Edit Posts</h2>
                     <hr>
-                    <form name="login" method="POST" action="<?= url ?>/posts/register">
+                    <form name="login" method="POST" action="<?= url ?>/posts/edit/<?= $data['id'] ?>">
                         <div class="form-group">
                             <label for="title" class="form-label">Title: <sup class="text-danger">*</sup></label>
                             <input type="text" name="title" id="title" value="<?= $data['title'] ?>" class="form-control <?= isset($data['error_title']) && !empty($data['error_title']) ? 'is-invalid' : '' ?>">
@@ -37,7 +37,7 @@
                         </div>
                         <hr>
                         <div class="text-center">
-                            <input type="submit" value="Register" class="w-25 btn btn-success">
+                            <input type="submit" value="Update" class="w-25 btn btn-success">
                         </div>
                     </form>
                 </div>

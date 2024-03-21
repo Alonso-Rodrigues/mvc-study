@@ -13,20 +13,25 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="<?= url ?>/posts">Posts</a></li>
-                    <li class="breadcrumb-item active text-light" aria-current="page"><?= htmlspecialchars($data['post'][0]->title) ?></li>
+                    <li class="breadcrumb-item active text-light" aria-current="page"><?= htmlspecialchars($data['post']->title) ?></li>
                 </ol>
             </nav>
-            <div class="card text-center">
-                <div class="card-header bg-secondary text-light">
-                    <?= htmlspecialchars($data['post'][0]->title) ?>
+            <div class="card text-center p-3">
+                <div class="card-header">
+                    <?= htmlspecialchars($data['post']->title) ?>
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><?= htmlspecialchars($data['post'][0]->text) ?></p>
+                    <p class="card-text"><?= htmlspecialchars($data['post']->text) ?></p>
                 </div>
                 <div class=" card-footer text-muted">
-                    Written by: <?= htmlspecialchars($data['user'][0]->name) ?>
-                    on date: <?= htmlspecialchars(Checker::correctDate($data['user'][0]->created_in)) ?>
+                    Written by: <?= htmlspecialchars($data['user']->name) ?>
+                    on date: <?= htmlspecialchars(Checker::correctDate($data['user']->created_in)) ?>
                 </div>
+                <?php if ($data['post']->user_id == $_SESSION['user_id']) : ?>
+                    <div class="text-center">
+                        <a href="<?= url . '/posts/edit/' . $data['post']->id ?>" class="w-25 btn btn-outline-danger">Edit</a>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
     </main>
