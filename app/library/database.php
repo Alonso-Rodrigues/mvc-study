@@ -11,17 +11,17 @@ class DataBase
 
     public function __construct()
     {
-        //data source or DSN contains the information needed to connect to the database
+        //Data source or DSN contains the information needed to connect to the database
         $dns = 'mysql:host=' . $this->host . ';port=' . $this->door . ';dbname=' . $this->db;
 
         $options = [
-            // caches the connection to be reused, and avoids the overhead of a new connection, resulting in a faster application
+            // Caches the connection to be reused, and avoids the overhead of a new connection, resulting in a faster application
             PDO::ATTR_PERSISTENT => true,
-            // throws a PDOException if an error occurs
+            // Throws a PDOException if an error occurs
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
         try {
-            // create the PDO instance
+            // Create the PDO instance
             $this->dbh = new PDO($dns, $this->user, $this->pwd, $options);
         } catch (PDOException $e) {
             print "ERROR!: " . $e->getMessage() . "<br/>";
@@ -29,14 +29,14 @@ class DataBase
         }
     }
 
-    //preare statements with query
+    //Preare statements with query
     public function query($sql)
     {
-        //prepare a sql query
+        //Prepare a sql query
         $this->stmt = $this->dbh->prepare($sql);
     }
 
-    //binds a value to a parameter
+    //Binds a value to a parameter
     public function bind($parameter, $value, $type = null)
     {
         if (is_null($type)) {
@@ -57,33 +57,33 @@ class DataBase
         $this->stmt->bindValue($parameter, $value, $type);
     }
 
-    //execute prepared statement
+    //Execute prepared statement
     public function execute()
     {
         return $this->stmt->execute();
     }
 
-    // get a single record
+    // Get a single record
     public function result()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    //get a record group
+    //Get a record group
     public function results()
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    //returns the number of rows affected by the last SQL statement
+    //Returns the number of rows affected by the last SQL statement
     public function totalresults()
     {
         return $this->stmt->rowCount();
     }
 
-    //returns the last ID entered into the database
+    //Returns the last ID entered into the database
     public function lastId()
     {
         return $this->dbh->lastInsertId();

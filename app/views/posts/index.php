@@ -32,7 +32,7 @@
                             </div>
                             <div class=" card-footer text-muted">
                                 Written by: <?= htmlspecialchars($post->name) ?> 
-                                on date: <?= htmlspecialchars(date('d/m/Y H:i', strtotime($post->postsDateRegister))) ?>
+                                on date: <?= htmlspecialchars(Checker::correctDate($post->postsDateRegister)) ?>
                             </div>
                         </div>
                     <?php endforeach ?>
