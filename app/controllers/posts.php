@@ -17,7 +17,12 @@ class Posts extends controller
     //Controller index posts
     public function index()
     {
-        $this->view('posts/index');
+        // to show posts in the index
+        $data = [
+            'posts' => $this->postModel->readPosts()
+        ];
+
+        $this->view('posts/index', $data);
     }
 
     // Controller posts

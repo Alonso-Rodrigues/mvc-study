@@ -18,8 +18,24 @@
                         <a href="<?= url ?>/posts/register" class="btn btn-light">To Write</a>
                     </div>
                 </div>
-                <div class="card-body text-center bg-secondary">
-                    <p class="m-0">List of Posts Here</p>
+                <div class="card-body bg-secondary ">
+                    <?php foreach ($data['posts'] as $post) : ?>
+                        <div class="card my-5 d-flex justify-content-between">
+                            <div class="card-header">
+                                <?= htmlspecialchars($post->title) ?>
+                            </div>
+                            <div class="card-body ">
+                                <p class="card-text">
+                                    <?= htmlspecialchars($post->text) ?>
+                                </p>
+                                <a href="#" class="btn btn-primary" style="float: right;">Read More</a>
+                            </div>
+                            <div class=" card-footer text-muted">
+                                Written by: <?= htmlspecialchars($post->name) ?> 
+                                on date: <?= htmlspecialchars(date('d/m/Y H:i', strtotime($post->postsDateRegister))) ?>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
                 </div>
             </div>
         </div>

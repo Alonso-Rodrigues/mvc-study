@@ -67,7 +67,7 @@ class DataBase
     public function result()
     {
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_OBJ);
+        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     //get a record group

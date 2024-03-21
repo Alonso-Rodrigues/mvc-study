@@ -9,6 +9,23 @@ class Post
         $this->db = new DataBase();
     }
 
+    // to read posts from data base
+    public function readPosts()
+    {
+        $this->db->query(
+            "SELECT *,
+        posts.id as postID,
+        posts.created_in as postsDateRegister, 
+        users.id as userID, 
+        users.created_in as usersDateRegister
+    FROM posts
+    INNER JOIN users ON
+        posts.user_id = users.id;
+    "
+        );
+        return $this->db->result();
+    }
+
     // to register posts
     public function store($data)
     {
