@@ -4,6 +4,7 @@ class Posts extends controller
 {
     // Restricting post changes to logged in users
     private $postModel;
+    private $userModel;
 
     public function __construct()
     {
@@ -12,6 +13,7 @@ class Posts extends controller
         }
 
         $this->postModel = $this->model('Post');
+        $this->userModel = $this->model('User');
     }
 
     //Controller index posts
@@ -60,5 +62,16 @@ class Posts extends controller
             ];
         }
         $this->view('posts/register', $data);
+    }
+
+    public function show($id){
+        $post = $this->postModel->readPostId($id);
+        $user = $this->userModel->readUserId($post[0]->user_id);
+
+        $data = [
+            'post' => $post, 
+            'user' => $user
+        ];
+        $this->view('posts/show', $data);
     }
 }

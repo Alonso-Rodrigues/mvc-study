@@ -10,7 +10,7 @@
 <body>
     <main>
         <div class="container py-5 d-flex justify-content-center">
-            <div class="card rounded w-75 p-5 d-inline-block bg-dark text-light">
+            <div class="card rounded w-75 p-5 d-inline-block bg-dark bg-gradient text-light">
                 <div class="justify-content-between text-center align-items-center p-3">
                     <h1>About the Project</h1>
                 </div>

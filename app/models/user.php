@@ -9,7 +9,7 @@ class User
         $this->db = new DataBase();
     }
 
-    // to register user
+    // To register user
     public function store($data)
     {
         $this->db->query("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
@@ -24,7 +24,7 @@ class User
             return false;
         }
     }
-    // to check if the email already exists in the database
+    // To check if the email already exists in the database
     public function checkEmail($email)
     {
         $this->db->query("SELECT email FROM users WHERE email = :e");
@@ -36,7 +36,7 @@ class User
             return false;
         }
     }
-    // to check login
+    // To check login
     public function checkLogin($email, $password)
     {
         $this->db->query("SELECT * FROM users WHERE email = :e");
@@ -54,5 +54,13 @@ class User
         } else {
             return false;
         }
+    }
+
+    // To read user by id
+    public function readUserId($id)
+    {
+        $this->db->query("SELECT * FROM users WHERE id = :id");
+        $this->db->bind('id', $id);
+        return $this->db->result();
     }
 }
