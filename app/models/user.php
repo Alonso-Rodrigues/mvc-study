@@ -42,10 +42,12 @@ class User
         $this->db->query("SELECT * FROM users WHERE email = :e");
         $this->db->bind(":e", $email);
 
-        if ($this->db->result()) {
-            $result = $this->db->result();
-            if (password_verify($password, $result->password)) {
-                return $result;
+        $result = $this->db->result();
+
+        if ($result) {
+            $user = $result[0];
+            if (password_verify($password,$user->password)) {
+                return $user;
             } else {
                 return false;
             }
