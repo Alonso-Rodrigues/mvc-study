@@ -68,13 +68,20 @@ class Posts extends controller
     public function show($id = null)
     {
         $post = $this->postModel->readPostId($id);
-        $user = $this->userModel->readUserId($post->user_id);
 
-        $data = [
-            'post' => $post,
-            'user' => $user
-        ];
-        $this->view('posts/show', $data);
+        // Check that $post is not false before continuing
+        if ($post !== false) {
+            $user = $this->userModel->readUserId($post->user_id);
+
+            $data = [
+                'post' => $post,
+                'user' => $user
+            ];
+            $this->view('posts/show', $data);
+        } else {
+            // Redirect to home page.
+            url::redirect('posts');
+        }
     }
 
     // To edit posts
@@ -121,4 +128,42 @@ class Posts extends controller
         }
         $this->view('posts/edit', $data);
     }
+
+    // To delete a post
+    public function delete($id)
+    {
+
+        if (!$this->checkAutorization($id)) {
+            // To check if I will actually receive numbers
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            $method = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($id && $method == 'POST') {
+                if ($this->postModel->delete($id)) {
+                    session::message('post', 'Post successfully deleted!', 'alert alert-success');
+                    url::redirect('posts');
+                }
+            } else {
+                session::message('post', 'You do not have permission to delete this post!', 'alert alert-danger');
+                url::redirect('posts');
+            }
+        } else {
+            session::message('post', 'You do not have permission to delete this post!', 'alert alert-danger');
+            url::redirect('posts');
+        }
+    }
+
+    // To check if the user is loggin in or not
+    private function checkAutorization($id)
+    {
+
+        $post = $this->postModel->readPostId($id);
+
+        if ($post->user_id != $_SESSION['user_id']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
+

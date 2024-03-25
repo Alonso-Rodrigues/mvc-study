@@ -28,8 +28,18 @@
                     on date: <?= htmlspecialchars(Checker::correctDate($data['user']->created_in)) ?>
                 </div>
                 <?php if ($data['post']->user_id == $_SESSION['user_id']) : ?>
-                    <div class="text-center">
-                        <a href="<?= url . '/posts/edit/' . $data['post']->id ?>" class="w-25 btn btn-outline-danger">Edit</a>
+                    <hr>
+                    <div>
+                        <ul class="list-inline d-flex justify-content-between">
+                            <li class="list-inline-item">
+                                <a href="<?= url . '/posts/edit/' . $data['post']->id ?>" class="btn btn-warning">Edit</a>
+                            </li>
+                            <li>
+                                <form action="<?= url . '/posts/delete/' . $data['post']->id ?>" method="POST">
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>
+                            </li>
+                        </ul>
                     </div>
                 <?php endif ?>
             </div>
