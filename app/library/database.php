@@ -1,11 +1,11 @@
 <?php
 class DataBase
 {
-    private $host = 'localhost';
-    private $user = 'root';
-    private $pwd = '';
-    private $db = 'framework';
-    private $door = '3306';
+    private $host = DB['HOST'];
+    private $user = DB['USER'];
+    private $pwd = DB['PASSWORD'];
+    private $db = DB['DATABASE'];
+    private $door = DB['DOOR'];
     private $dbh;
     private $stmt;
 
