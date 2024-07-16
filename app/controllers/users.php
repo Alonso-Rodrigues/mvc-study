@@ -131,4 +131,60 @@ class Users extends Controller
         url::redirect('users/login');
         exit();
     }
+
+
+    // Controller to show the user profile
+    public function profile()
+    {
+        if (!session::userLogged()) {
+            url::redirect('users/login');
+        }
+
+        $userId = $_SESSION['user_id'];
+        $user = $this->userModel->readUserId($userId);
+
+
+        // Verifica se houve envio do formulário
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Obtém os dados do formulário
+            $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+
+            // Prepara os dados para atualização
+            $data = [
+                'id' => $userId, // Utilize $userId para evitar problemas
+                'name' => trim($form['name']),
+                'email' => trim($form['email']),
+                'about' => trim($form['about']),
+                // Adicione outros campos aqui, se necessário
+            ];
+
+            // Verifica se a senha e a confirmação de senha estão corretas
+            if ($form['password'] != $form['confirm_password']) {
+                $data['error_confirm_password'] = "Passwords don't match";
+            } elseif (strlen($form['password']) < 6) {
+                $data['error_password'] = 'Password must be at least 6 characters';
+            }
+
+            // Atualiza o perfil do usuário
+            if ($this->userModel->updateUser($data)) {
+                // Atualização bem-sucedida, redireciona para o perfil do usuário
+                session::message('user', 'Perfil atualizado com sucesso!');
+                url::redirect('users/profile');
+            } else {
+                die("Erro ao atualizar perfil");
+            }
+        } else {
+            // Se o método HTTP não for POST, apenas exiba o perfil do usuário
+            // Prepara os dados para enviar para a view
+            $data = [
+                'user' => $user,
+                'email' => $user->email, // Não é necessário, já está no objeto $user
+                'about' => $user->about, // Adicione outras informações do usuário aqui, se necessário
+            ];
+
+            // Carrega a view para exibir o perfil do usuário
+            $this->view('users/profile', $data);
+        }
+
+    }
 }

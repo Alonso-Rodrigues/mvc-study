@@ -46,7 +46,7 @@ class User
 
         if ($result) {
             $user = $result;
-            if (password_verify($password,$user->password)) {
+            if (password_verify($password, $user->password)) {
                 return $user;
             } else {
                 return false;
@@ -62,5 +62,23 @@ class User
         $this->db->query("SELECT * FROM users WHERE id = :id");
         $this->db->bind('id', $id);
         return $this->db->result();
+    }
+
+    // To update user
+    public function updateUser($data){ {
+            $this->db->query("UPDATE users SET name = :name, email = :email, password = :password, about = :about WHERE id = :id");
+
+            $this->db->bind("id", $data['id']);
+            $this->db->bind("name", $data['name']);
+            $this->db->bind("email", $data['email']);
+            $this->db->bind("password", $data['password']);
+            $this->db->bind("about", $data['about']);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } 
     }
 }

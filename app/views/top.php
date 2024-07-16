@@ -18,7 +18,10 @@
                 <a href="<?= url ?>" class="nav-link active" aria-current="page">Home</a>
             </li>
             <li class="nav-item">
-                <a href="<?= url ?>/pages/about" class="nav-link">About</a>
+                <a href="<?= url ?>/pages/about" class="nav-link">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a href="<?= url ?>/users/profile" class="nav-link">Profile</a>
             </li>
             <?php if (isset($_SESSION['user_id'])) { ?>
                 <li class="nav-link">
@@ -30,7 +33,7 @@
                 <li class="nav-item"><a href="<?= url ?>/users/login" class="nav-link">Login</a></li>
             <?php } ?>
         </ul>
-
+        
     </header>
 </body>
 
